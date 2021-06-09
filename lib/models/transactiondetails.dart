@@ -1,7 +1,7 @@
 import 'package:hive/hive.dart';
 part 'transactiondetails.g.dart';
 @HiveType(typeId: 0)
-class TransactionDetails{
+class TransactionDetails extends HiveObject{
   @HiveField(0)
   late String name;
   @HiveField(1)

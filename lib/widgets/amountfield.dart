@@ -1,17 +1,20 @@
+import 'package:expenso/constants/colorconstants.dart';
 import 'package:flutter/material.dart';
 
-class AmountField extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return TextFormField(
-      //controller: namecontroller,
-      decoration: InputDecoration(
-        border: OutlineInputBorder(),
-        hintText: 'Enter Amount in INR',
+Widget amountField(TextEditingController amountController) {
+  return TextFormField(
+    controller: amountController,
+    decoration: InputDecoration(
+      focusedBorder: OutlineInputBorder(
+        borderSide: BorderSide(color: primaryColor, width: 2.0),
       ),
-      keyboardType: TextInputType.number,
-      validator: (name) =>
-      name != null && name.isEmpty ? 'Enter a Amount in INR' : null,
-    );
-  }
+      enabledBorder: OutlineInputBorder(
+        borderSide: BorderSide(color: primaryColor, width: 2.0),
+      ),
+      hintText: 'Enter Amount in INR',
+    ),
+    keyboardType: TextInputType.number,
+    validator: (name) =>
+        name != null && name.isEmpty ? 'Enter a Amount in INR' : null,
+  );
 }

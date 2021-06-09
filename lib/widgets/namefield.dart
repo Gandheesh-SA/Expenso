@@ -1,18 +1,22 @@
 import 'package:flutter/material.dart';
-class NameField extends StatelessWidget {
-  /*final  namecontroller;
-  NameField({this.namecontroller});*/
-  @override
-  Widget build(BuildContext context) {
-    return TextFormField(
-      //controller: namecontroller,
-      decoration: InputDecoration(
-        border: OutlineInputBorder(),
-        hintText: 'Enter Name',
-      ),
+import 'package:expenso/constants/colorconstants.dart';
 
-      validator: (name) =>
-      name != null && name.isEmpty ? 'Enter a name' : null,
-    );
-  }
+Widget nameField(TextEditingController namecontroller){
+  return TextFormField(
+    controller: namecontroller,
+    textCapitalization: TextCapitalization.words,
+    decoration: InputDecoration(
+      focusedBorder: OutlineInputBorder(
+        borderSide: BorderSide(color: primaryColor, width: 2.0),
+      ),
+      enabledBorder: OutlineInputBorder(
+        borderSide: BorderSide(color: primaryColor, width: 2.0),
+      ),
+      hintText: 'Enter Name',
+      suffixStyle: TextStyle(color: primaryColor),
+    ),
+
+    validator: (name) =>
+    name != null && name.isEmpty ? 'Enter a name' : null,
+  );
 }

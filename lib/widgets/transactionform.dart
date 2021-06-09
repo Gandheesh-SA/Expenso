@@ -1,47 +1,68 @@
 import 'package:flutter/material.dart';
-import 'package:expenso/models/transactiondetails.dart';
 import 'package:expenso/widgets/namefield.dart';
 import 'package:expenso/widgets/amountfield.dart';
 import 'package:expenso/widgets/addButton.dart';
 import 'package:expenso/widgets/cancelbutton.dart';
 import 'package:expenso/widgets/radiobuttons.dart';
 import 'package:expenso/widgets/datepicker.dart';
+import 'package:expenso/models/transactiondetails.dart';
 
 class TransactionForm extends StatefulWidget {
-  /*final TransactionDetails ? transaction;
-  final Function(String name, double amount, bool isExpense, DateTime dateTime) onDone;
-  TransactionForm({this.transaction, required this.onDone});*/
+  final TransactionDetails ? transaction;
+  TransactionForm({
+    this.transaction,
+  });
+
   @override
   _TransactionFormState createState() => _TransactionFormState();
 }
 
 class _TransactionFormState extends State<TransactionForm> {
-  final _formKey = GlobalKey<FormState>();
+
+  final formKey = GlobalKey<FormState>();
+  final nameController = TextEditingController();
+  final amountController = TextEditingController();
+  final dateController = TextEditingController();
+  bool isExpense= true;
+  bool validation=false;
+
+  @override
+  void initState() {
+    super.initState();
+    if(widget.transaction!=null){
+      final transaction = widget.transaction!;
+      nameController.text=transaction.name;
+      amountController.text=transaction.amount.toString();
+      dateController.text =transaction.dateTime.toString();
+      isExpense  = transaction.isExpense;
+      validation = formKey.currentState!.validate();
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
       title: Text('Enter your details'),
       content: Form(
-        key:_formKey,
+        key:formKey,
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-
-            mainAxisSize: MainAxisSize.max,
+            mainAxisSize: MainAxisSize.min,
             children: [
-              NameField(),
+              nameField(nameController),
               SizedBox(height:20.0),
-              AmountField(),
+              amountField(amountController),
               SizedBox(height:20.0),
-              TimeStamp(),
+              TimeStamp( globalKey: dateController,),
               SizedBox(height:20.0),
               CustomRadioButtons(),
             ],
           ),
         ),
       ),
-      actions: [
-        AddButton(),
+       actions: [
+        addButton(formKey, context, nameController, dateController,  amountController, isExpense),
         CancelButton(),
       ],
     );
