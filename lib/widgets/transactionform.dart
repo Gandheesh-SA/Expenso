@@ -3,7 +3,7 @@ import 'package:expenso/widgets/namefield.dart';
 import 'package:expenso/widgets/amountfield.dart';
 import 'package:expenso/widgets/addButton.dart';
 import 'package:expenso/widgets/cancelbutton.dart';
-import 'package:expenso/widgets/radiobuttons.dart';
+import 'package:expenso/constants/colorconstants.dart';
 import 'package:expenso/widgets/datepicker.dart';
 import 'package:expenso/models/transactiondetails.dart';
 
@@ -23,7 +23,7 @@ class _TransactionFormState extends State<TransactionForm> {
   final nameController = TextEditingController();
   final amountController = TextEditingController();
   final dateController = TextEditingController();
-  bool isExpense= true;
+  bool isExpense = true;
   bool validation=false;
 
   @override
@@ -41,8 +41,10 @@ class _TransactionFormState extends State<TransactionForm> {
 
   @override
   Widget build(BuildContext context) {
+    bool addEdit = widget.transaction!= null;
+    final heading = addEdit? 'Edit your details': 'Add your details';
     return AlertDialog(
-      title: Text('Enter your details'),
+      title: Text(heading),
       content: Form(
         key:formKey,
         child: SingleChildScrollView(
@@ -56,7 +58,33 @@ class _TransactionFormState extends State<TransactionForm> {
               SizedBox(height:20.0),
               TimeStamp( globalKey: dateController,),
               SizedBox(height:20.0),
-              CustomRadioButtons(),
+              RadioListTile<bool>(
+                selectedTileColor: primaryColor,
+                activeColor: primaryColor,
+                title: Text('Expense'),
+                value: true,
+                groupValue: isExpense,
+                onChanged: (value){
+                  setState(() {
+                    isExpense=value!;
+                    print(isExpense);
+                  });
+                },
+              ),
+              RadioListTile<bool>(
+                selectedTileColor: primaryColor,
+                activeColor: primaryColor,
+                title: Text('Income'),
+                value: false,
+                groupValue: isExpense,
+                onChanged: (value){
+                  setState(() {
+                    isExpense=value!;
+                    print(isExpense);
+                  });
+
+                },
+              ),
             ],
           ),
         ),

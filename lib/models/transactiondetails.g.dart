@@ -18,7 +18,7 @@ class TransactionDetailsAdapter extends TypeAdapter<TransactionDetails> {
     };
     return TransactionDetails()
       ..name = fields[0] as String
-      ..dateTime = fields[1] as DateTime
+      ..dateTime = fields[1] as String
       ..isExpense = fields[2] as bool
       ..amount = fields[3] as double;
   }

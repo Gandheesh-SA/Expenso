@@ -2,9 +2,15 @@ import 'package:expenso/widgets/transactionCard.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:expenso/models/transactiondetails.dart';
+
 
 Widget buildScreen(BuildContext context, List transactions) {
+
+  final netExpense = transactions.fold<double>(0,
+          (previousValue, element) => element.isExpense
+              ? previousValue - element.amount:previousValue + element.amount
+  );
+  final color= netExpense>0 ? Colors.green : Colors.red;
   return Expanded(
     child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
       Container(
@@ -15,10 +21,10 @@ Widget buildScreen(BuildContext context, List transactions) {
           bottom: 25.0,
         ),
         child: Text(
-          transactions.isEmpty ? 'No Expense' : 'Net Expense',
+          transactions.isEmpty ? 'No Expense' :'\₹${netExpense.toStringAsFixed(2)}',
           style: GoogleFonts.chilanka(
             fontSize: 24.0,
-            color: Colors.white,
+            color: color,
             letterSpacing: 2.0,
           ),
         ),

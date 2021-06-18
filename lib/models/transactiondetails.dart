@@ -5,7 +5,7 @@ class TransactionDetails extends HiveObject{
   @HiveField(0)
   late String name;
   @HiveField(1)
-  late DateTime dateTime;
+  late String dateTime;
   @HiveField(2)
   late bool isExpense;
   @HiveField(3)

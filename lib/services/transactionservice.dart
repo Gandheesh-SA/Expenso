@@ -1,13 +1,13 @@
 import 'package:hive/hive.dart';
 import 'package:expenso/models/transactiondetails.dart';
-import 'package:intl/intl.dart';
+
 
 class TransactionService{
 
-  Future addTransaction(String name, double amount,bool isExpense) async {
+  Future addTransaction(String name, double amount, String dateTime, bool isExpense) async {
     final transaction = TransactionDetails()
       ..name = name
-      ..dateTime = DateTime.now()
+      ..dateTime = dateTime
       ..amount = amount
       ..isExpense = isExpense;
 
@@ -15,7 +15,7 @@ class TransactionService{
     box.add(transaction);
   }
 
-  void editTransaction(TransactionDetails transaction,String name,DateTime dateTime,bool isExpense,double amount){
+  void editTransaction(TransactionDetails transaction,String name,String dateTime,bool isExpense,double amount){
     transaction.name=name;
     transaction.dateTime=dateTime;
     transaction.amount=amount;

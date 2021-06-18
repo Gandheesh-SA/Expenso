@@ -1,7 +1,9 @@
+import 'package:expenso/widgets/options.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:expenso/models/transactiondetails.dart';
+
 Widget transactionCard(BuildContext context, TransactionDetails transactionDetails){
+  final color = transactionDetails.isExpense? Colors.red : Colors.green;
   return Card(
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.only(
@@ -17,11 +19,16 @@ Widget transactionCard(BuildContext context, TransactionDetails transactionDetai
         style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
       ),
       subtitle: Text(transactionDetails.dateTime.toString()),
-      trailing: Text(
+      trailing: Text('₹'+
         transactionDetails.amount.toString(),
         style: TextStyle(
-            color: Colors.black, fontWeight: FontWeight.bold, fontSize: 16),
+            color: color, fontWeight: FontWeight.bold, fontSize: 16),
       ),
+      children: [
+            workOption(context, transactionDetails),
+      ],
     ),
+
+
   );
 }
