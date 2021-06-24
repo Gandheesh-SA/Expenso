@@ -13,14 +13,13 @@ Database: HIVE
 
 ## Screenshots
 App Screens:
-![ScreenShot](screenshots/one.jpg)
-![ScreenShot](screenshots/two.jpg)
-![ScreenShot](screenshots/three.jpg)
+<p align="left">
+    <img src="https://user-images.githubusercontent.com/56604198/123278855-ee63f800-d524-11eb-90f6-bd409f44e78e.jpg" alt="Initial Screen" height="400px">
+</p>
+<p align="left">
+    <img src="https://user-images.githubusercontent.com/56604198/123279016-181d1f00-d525-11eb-96c2-0520891cd61d.jpg" alt="Form Screen" height="400px">
+</p>
+<p align="left">
+    <img src="https://user-images.githubusercontent.com/56604198/123279135-33882a00-d525-11eb-84f2-dc8213f98eea.jpg" alt="Expense Screen" height="400px">
+</p>
 
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
